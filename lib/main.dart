@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 void main() {
@@ -50,7 +52,40 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
+    try {
+      var request = http.Request(
+        'GET',
+        Uri(
+          scheme: 'https',
+          host: 'tienda.mercadona.es',
+          path: '/api/categories/',
+          queryParameters: {
+            'lang': 'es',
+            'wh': 'bcn1',
+          },
+        ),
+      );
+      request.headers.clear();
+      request.headers.addAll(
+        {
+          'Access-Control-Allow-Origin': '*',
+          'content-type': 'application/json',
+          'Referrer-Policy': 'no-referrer',
+        },
+      );
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        print(await response.stream.bytesToString());
+      } else {
+        print(response.reasonPhrase);
+      }
+    } catch (e) {
+      print(e);
+    }
+
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
