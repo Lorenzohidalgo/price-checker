@@ -1,17 +1,12 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  flutter_dependency_checker_job:
     runs-on: ubuntu-latest
     name: A job to check for outdated dependencies
     steps:
-      - name: Hello world action step
+      - name: Execute Flutter Dependency check
         id: checker
-        uses: Lorenzohidalgo/flutter_dependency_checker@v0.1
+        uses: Lorenzohidalgo/flutter_dependency_checker@main
         with:
           who-to-greet: '@lhidalgo'
-      # Use the output from the `checker` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.checker.outputs.time }}"
-      - name: Get all variables
-        run: echo "The whole output was ${{ steps.checker.outputs }}"  
