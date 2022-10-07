@@ -7,6 +7,6 @@ jobs:
     steps:
       - name: Execute Flutter Dependency check
         id: checker
-        uses: Lorenzohidalgo/flutter_dependency_checker@main
+        uses: Lorenzohidalgo/flutter_dependency_checker@c7dd3c961ab5e2be46b32957ed696a5830398bec
         with:
           who-to-greet: '@lhidalgo'
