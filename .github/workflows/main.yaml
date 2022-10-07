@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: checker
-        uses: Lorenzohidalgo/flutter_dependency_checker
+        uses: Lorenzohidalgo/flutter_dependency_checker@v0.1
         with:
           who-to-greet: '@lhidalgo'
       # Use the output from the `checker` step
