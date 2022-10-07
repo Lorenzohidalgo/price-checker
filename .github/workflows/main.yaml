@@ -1,0 +1,17 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - name: Hello world action step
+        id: dependency_checker
+        uses: Lorenzohidalgo/flutter_dependency_checker@v0.1
+        with:
+          who-to-greet: '@lhidalgo'
+      # Use the output from the `dependency_checker` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.dependency_checker.outputs.time }}"
+      - name: Get all variables
+        run: echo "The whole output was ${{ steps.dependency_checker.outputs }}"  
